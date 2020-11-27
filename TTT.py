@@ -1,4 +1,3 @@
-
 def victorycheck(sl):
     if sl[0] == sl[3] and sl[0] == sl[6]:
         return True
@@ -18,6 +17,9 @@ def victorycheck(sl):
         return True
     
 def xplays(sl):
+    """
+    mängija käigu teostamine...
+    """
     while True:
 
         location = int(input("Kuhu soovite mängida?"))
@@ -48,7 +50,7 @@ i = 0
 slots = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
 field = f" {slots[0]} │ {slots[1]} │ {slots[2]} \n───────────\n {slots[3]} │ {slots[4]} │ {slots[5]} \n───────────\n {slots[6]} │ {slots[7]} │ {slots[8]} "
 
-while i != 9:
+while i != 9: # asendada for tsükliga, i<=9  
     i = i + 1
     xplays(slots)
     if victorycheck(slots) == True:
@@ -60,3 +62,7 @@ while i != 9:
         print("O Võitis")
         break
     
+# x ja o mängijad viia ühele funktsioonile
+# break konstruktsioon asendada return andmetüüp (loobume globlaasetest muutujatest, kui see pole vajalik)
+if __name__ == "__main__":
+    pass
