@@ -16,53 +16,39 @@ def victorycheck(sl):
     elif sl[2] == sl[4] and sl[2] == sl[6]:
         return True
     
-def xplays(sl):
-    """
-    mängija käigu teostamine...
-    """
+def plays(sl,xo):
+
     while True:
 
         location = int(input("Kuhu soovite mängida?"))
-        
         if sl[location] == "x" or sl[location] == "o":
             print("See koht on täidetud!")
         else:
-            slots[location] = "x"
-            field = f" {slots[0]} │ {slots[1]} │ {slots[2]} \n───────────\n {slots[3]} │ {slots[4]} │ {slots[5]} \n───────────\n {slots[6]} │ {slots[7]} │ {slots[8]} "
-            print(field)
-            break
-
-
-def oplays(sl):
-    while True:
-
-        location = int(input("Kuhu soovite mängida?"))
+            if xo == True:
+                return "x", location
+            elif xo == False: 
+                return "o", location
         
-        if sl[location] == "x" or sl[location] == "o":
-            print("See koht on täidetud!")
-        else:
-            slots[location] = "o"
-            field = f" {slots[0]} │ {slots[1]} │ {slots[2]} \n───────────\n {slots[3]} │ {slots[4]} │ {slots[5]} \n───────────\n {slots[6]} │ {slots[7]} │ {slots[8]} "
-            print(field)
-            break
 
 i = 0
 slots = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
 field = f" {slots[0]} │ {slots[1]} │ {slots[2]} \n───────────\n {slots[3]} │ {slots[4]} │ {slots[5]} \n───────────\n {slots[6]} │ {slots[7]} │ {slots[8]} "
+x_or_o = False
 
-while i != 9: # asendada for tsükliga, i<=9  
-    i = i + 1
-    xplays(slots)
-    if victorycheck(slots) == True:
-        print("X Võitis")
-        break
+for i in range(9):
+    x_or_o = True
+    slots[plays(slots, x_or_o)[1]] = plays(slots, x_or_o)[0]
+    field = f" {slots[0]} │ {slots[1]} │ {slots[2]} \n───────────\n {slots[3]} │ {slots[4]} │ {slots[5]} \n───────────\n {slots[6]} │ {slots[7]} │ {slots[8]} "
+    print(field)
+    if victorycheck == True:
+        print("x võitis")
     
-    oplays(slots)
-    if victorycheck(slots) == True:
-        print("O Võitis")
-        break
+    x_or_o = False
+    slots[plays(slots, x_or_o)[1]] = plays(slots, x_or_o)[0]
+    field = f" {slots[0]} │ {slots[1]} │ {slots[2]} \n───────────\n {slots[3]} │ {slots[4]} │ {slots[5]} \n───────────\n {slots[6]} │ {slots[7]} │ {slots[8]} "
+    print(field)
+    if victorycheck == True:
+        print("o võitis")
     
 # x ja o mängijad viia ühele funktsioonile
 # break konstruktsioon asendada return andmetüüp (loobume globlaasetest muutujatest, kui see pole vajalik)
-if __name__ == "__main__":
-    pass
